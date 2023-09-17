@@ -1,0 +1,60 @@
+# Global configurations for all services:
+spring:
+  profiles: default
+
+---
+
+# Configurations for Eureka server:
+spring:
+  profiles: eureka-server
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+---
+
+# Configurations for Zuul proxy:
+spring:
+  profiles: zuul-proxy
+zuul:
+  prefix: /api
+  routes:
+    my-service:
+      path: /my-service/**
+      serviceId: my-service
+    my-service-1:
+      path: /my-service-1/**
+      serviceId: my-service-1
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+---
+
+# Configurations for my-service:
+spring:
+  profiles: my-service
+server:
+  port: 8181
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+---
+
+# Configurations for my-service-1:
+spring:
+  profiles: my-service-1
+server:
+  port: 8182
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
