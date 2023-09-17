@@ -41,7 +41,7 @@ eureka:
 spring:
   profiles: my-service
 server:
-  port: 8181
+  port: 8182
 eureka:
   client:
     serviceUrl:
@@ -53,7 +53,7 @@ eureka:
 spring:
   profiles: my-service-1
 server:
-  port: 8182
+  port: 8181
 eureka:
   client:
     serviceUrl:
